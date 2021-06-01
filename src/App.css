@@ -3,7 +3,13 @@
 }
 
 body {
-  font-family: 'namumsquare';
+  font-family: "맑은 고딕" , 'verdana', san-serif;
+}
+
+.modal {
+  margin-top: 20px;
+  padding: 20px;
+  background: #eee;
 }
 
 .black-nav {
@@ -14,6 +20,13 @@ body {
   padding: 20px;
   font-weight: 600;
   font-size: 20px;
+}
+
+.list {
+  margin-top: 30px;
+  text-align: left;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .App-logo {
