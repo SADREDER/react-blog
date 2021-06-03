@@ -7,54 +7,27 @@ function App() {
   let [good, goodFunction] = useState([0, 0, 0]);
 
   let [modal, modalChange] = useState(false);
+  let [clickedTitleNumber, clickedTitleChange] = useState(0);
 
   return (
     <div className='App'>
       <div className='black-nav'>
         <div>Developer Blog</div>
       </div>
-      <div className='list'>
-        <h3>
-          {blogTitle[0]}
-          <span
-            onClick={() => {
-              goodFunction(good + 1);
-            }}
-          >
-            {' '}
-            👍
-          </span>
-          {' ' + good}
-        </h3>
-        <p>Published 17 February</p>
-        <hr />
-      </div>
-      <div className='list'>
-        <h3> {blogTitle[1]}</h3>
-        <p>Published 18 March</p>
-        <hr />
-      </div>
-      <div className='list'>
-        <h3
-          onClick={() => {
-            modalChange(!modal);
-          }}
-        >
-          {blogTitle[2]}
-        </h3>
-        <p>Published 27 May</p>
-        <hr />
-      </div>
 
-      {blogTitle.map(function (title) {
+      {blogTitle.map(function (blogTitle, i) {
         return (
           <div className='list'>
-            <h3>
+            <h3
+              onClick={() => {
+                clickedTitleChange(i);
+              }}
+            >
               {' '}
-              {title}{' '}
+              {blogTitle}{' '}
               <span
                 onClick={() => {
-                  goodFunction(good[title] + 1);
+                  goodFunction(good[blogTitle] + 1);
                 }}
               ></span>{' '}
               👍 {' ' + good[0]}
@@ -73,8 +46,9 @@ function App() {
         Open/Close
       </button>
 
-      {modal === true ? <Modal blogTitle={blogTitle} /> : null}
-
+      {modal === true ? (
+        <Modal blogTitle={blogTitle} clickedTitleNumber={clickedTitleNumber} />
+      ) : null}
     </div>
   );
 }
@@ -82,7 +56,7 @@ function App() {
 function Modal(props) {
   return (
     <div className='modal'>
-      <h2> {props.blogTitle[0]} </h2>
+      <h2> {props.blogTitle[props.clickedTitleNumber]} </h2>
       <p>Date</p>
       <p>Content</p>
     </div>
